@@ -11,6 +11,12 @@ def load_data(orphacode):
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
     return data
+    
+def load_disease(dis):
+    data=df.loc[df['Orphanet_disorder'] == disease]
+    lowercase = lambda x: str(x).lower()
+    data.rename(lowercase, axis='columns', inplace=True)
+    return data
 
 def input_list(gene_list):
     if isinstance(gene_list, list):
@@ -54,12 +60,12 @@ st.markdown( ####found some way around sidebar width
     unsafe_allow_html=True,
 )
 
-##URL of orpha dataset
-#url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/Data/OrphaICD10.tsv"
+##establish data type
 new_choice = ['Disease', 'Gene']
 
 choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
 
+###Disease
 if choice == 'Disease':
 
     df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t')
@@ -72,24 +78,28 @@ if choice == 'Disease':
         st.write('You selected:', code)
         desc=df.loc[df['Orpha_code'] == code]['Orphanet_disorder'] #find disorder description
         st.write(desc.to_string(index=False))
-        #def load_data(nrows):
-        #    data=pd.read_csv(url, nrows=nrows, sep='\t')
-        #    lowercase = lambda x: str(x).lower()
-        #    data.rename(lowercase, axis='columns', inplace=True)
-        #    return data
-
-
-
         #col1, col2, col3 = st.columns(3)
         #col1.metric("Description", "1.2 °F")
         #col2.metric("ICD-10", "-8%")
         #col3.metric("Orpha", "4%")
-
-
         data_load_state = st.text('Loading data...')
         data = load_data(code)
         data
         data_load_state  = st.text('Complete!')
+    
+    st.write("OR")
+    
+    list_of_diseases = [None]+list(np.unique(df['Orphanet_disorder'].to_list()))  # added default None so the rest of the code won't run at start
+    disease=st.selectbox("Disease name", options=list_of_diseases)
+    if disease!=None:
+        st.write('You selected:', disease)
+        st.write(disease)
+        data_load_state = st.text('Loading data...')
+        data = load_disease(disease)
+        data
+        data_load_state  = st.text('Complete!')
+    
+    
 
 elif choice == 'Gene':
     with st.form(key='gene_list'):
