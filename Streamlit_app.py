@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 from PIL import Image
-img = Image.open("Logo2.png")
+img = Image.open("Logo.png")
 
 st.image(img)
 
