@@ -13,6 +13,8 @@ st.title('classification of rare diseases')
 
 url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/main/OrphaICD10.tsv"
 
+st.selectbox("orpha code", options=('1','2','3','4','5'))
+
 def load_data(nrows):
     data=pd.read_csv(url, nrows=nrows, sep='\t')
     lowercase = lambda x: str(x).lower()
