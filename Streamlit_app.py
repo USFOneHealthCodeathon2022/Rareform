@@ -26,7 +26,7 @@ st.write('You selected:', code)
 #    return data
 
 def load_data(orphacode):
-    data.loc[df['Orpha_code'] == orphacode]
+    data=df.loc[df['Orpha_code'] == orphacode]
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
     return data
