@@ -10,9 +10,9 @@ st.image(img)
 st.title('classification of rare diseases')
 
 ##URL of orpha dataset
-#url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/main/OrphaICD10.tsv"
+url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/Data/OrphaICD10.tsv"
 
-df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t')
+df=pd.read_csv(url, sep='\t')
 list_of_codes = np.unique(df['Orpha_code'].to_list())
 
 #set ophacode from selection box, should probably find a way to allow description searching
