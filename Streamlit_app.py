@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+from PIL import Image
+img = Image.open("Logo.png")
+
+st.image(img)
+
 st.title('classification of rare diseases')
 
 url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/main/OrphaICD10.tsv"
