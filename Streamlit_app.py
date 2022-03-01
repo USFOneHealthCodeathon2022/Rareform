@@ -11,7 +11,7 @@ st.title('classification of rare diseases')
 
 url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/main/OrphaICD10.tsv"
 
-df=pd.read_csv(url, nrows=nrows, sep='\t')
+df=pd.read_csv(url, sep='\t')
 list_of_codes = df['Orpha_code'].to_list()
 
 #code=st.selectbox("orpha code", options=('1','2','3','4','5'))
