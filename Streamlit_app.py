@@ -19,7 +19,7 @@ list_of_codes = np.unique(df['Orpha_code'].to_list())
 code=st.selectbox("orpha code", options=list_of_codes)
 
 st.write('You selected:', code)
-desc=df.loc[df['Orpha_code'] == orphacode]['Orphanet_disorder'] #find disorder description
+desc=df.loc[df['Orpha_code'] == code]['Orphanet_disorder'] #find disorder description
 st.write(desc.to_string(index=False))
 #def load_data(nrows):
 #    data=pd.read_csv(url, nrows=nrows, sep='\t')
