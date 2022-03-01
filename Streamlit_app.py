@@ -104,11 +104,10 @@ if choice == 'Disease':
 elif choice == 'Gene':
     with st.form(key='gene_list'):
         gene_list = st.text_input(label="Enter gene(s), separated by ',' :")
+        gene_anno=st.selectbox("Include gene annotation:", options=["No", "Minimal", "Full"])
         submit_button = st.form_submit_button(label='Submit')
 
     if len(gene_list)!=0:
-
-
         enr_KEGG = gp.enrichr(gene_list=input_list(gene_list),
          gene_sets=['KEGG_2021_Human'],
          organism='Human', 
@@ -123,7 +122,42 @@ elif choice == 'Gene':
          cutoff=0.05
          )
 
-        plot_enrichr(enr_KEGG, 'firebrick')
-        plot_enrichr(enr_AutoRIF, 'sienna')
+        if enr_KEGG.results.empty and enr_AutoRIF.results.empty:
+            st.write(f"No matching gene found in database for input '{gene_list}'!")
+        else:
+            plot_enrichr(enr_KEGG, 'firebrick')
+            plot_enrichr(enr_AutoRIF, 'sienna')
+
+        if gene_anno=='Minimal' or gene_anno=='Full':
+            gene_list1 = enr_KEGG.results.iloc[0,-1]
+            gene_list2 = enr_AutoRIF.results.iloc[0,-1]
+            gene_db = pd.read_csv('Data/dbNSFP4.3a.Selected.csv')
+            gene_db_orpha = pd.read_csv('Data/dbNSFP4.3a.Selected.Orpha.csv')
+
+            cand_gene_list = gene_overlap(gene_list1, gene_list2)[0]
+
+            orpha_list = []
+            for count, gene in enumerate(cand_gene_list):
+                count += 1
+                idx1 = gene_db['Gene_name'] == gene
+                idx2 = gene_db_orpha['Gene_name'] == gene
+                orpha_list.append(idx2)
+                if idx2.any():
+                    st.write(f'Gene {count} ({gene}) can contribute to Orphanet disease.')
+                    gene_annos_orpha = gene_db_orpha[idx2].iloc[0,-4:]
+                    gene_annos = gene_db[idx1].iloc[0,-4:]
+                    labels = ['Interactions', 'pLI', 'GDI', 'LoFtool']
+                    X_axis = np.arange(len(labels))
+                    fig, ax = plt.subplots()
+                    plt.bar(X_axis-0.2, gene_annos_orpha.values.astype('float'), width=0.35, label='Orphanet genes', color='firebrick')
+                    plt.bar(X_axis+0.2, gene_annos.values.astype('float'), width=0.35, label='All genes', color='paleturquoise')
+                    plt.xticks([0,1,2,3], labels = labels,rotation=0)
+                    plt.ylabel('Rankscore percentiles')
+                    plt.legend()
+                    st.pyplot(plt)
+
+            if gene_anno=='Full':
+                new_idx = gene_db_orpha['Gene_name'].isin(cand_gene_list)
+                gene_db_orpha[new_idx].iloc[:,1:]
 
 
