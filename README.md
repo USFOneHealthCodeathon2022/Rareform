@@ -6,10 +6,12 @@
 -
 
 ## Solution
--
+We have developed the webapp "rareform" in order to navigate the relationship between different classification methods and find comparable diseases.
 
-## Results
--
+[Access the rareform WebApp] (https://share.streamlit.io/awtum/topic3_teama/main/Streamlit_app.py)
+
 
 ## Future Directions
--
+We hope this design can be improved in the following ways: 
+1. Comparisons between ICD 11 and ICD 10 
+2. Incorporation of genetic information to improve medical coding and grouping 
