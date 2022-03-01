@@ -3,22 +3,24 @@ import pandas as pd
 import numpy as np
 
 from PIL import Image
-img = Image.open("Logo.png")
+img = Image.open("images/Logo.png")
 
 st.image(img)
 
 st.title('classification of rare diseases')
 
-url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/main/OrphaICD10.tsv"
+##URL of orpha dataset
+#url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/main/OrphaICD10.tsv"
 
-df=pd.read_csv(url, sep='\t')
-list_of_codes = df['Orpha_code'].to_list()
+df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t')
+list_of_codes = np.unique(df['Orpha_code'].to_list())
 
-#code=st.selectbox("orpha code", options=('1','2','3','4','5'))
+#set ophacode from selection box, should probably find a way to allow description searching
 code=st.selectbox("orpha code", options=list_of_codes)
 
 st.write('You selected:', code)
-
+desc=df.loc[df['Orpha_code'] == orphacode]['Orphanet_disorder'] #find disorder description
+st.write(desc.to_string(index=False))
 #def load_data(nrows):
 #    data=pd.read_csv(url, nrows=nrows, sep='\t')
 #    lowercase = lambda x: str(x).lower()
@@ -40,3 +42,4 @@ def load_data(orphacode):
 data_load_state = st.text('Loading data...')
 data = load_data(code)
 data
+data_load_state  = st.text('Complete!')
