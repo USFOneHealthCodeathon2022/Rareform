@@ -36,7 +36,18 @@ def plot_enrichr(enrichr, color, k=10):
     ax.tick_params(axis='both', labelsize=15)
     plt.xlabel('-log10(P-value)')
     st.pyplot(fig)
-    
+  
+def gene_overlap(gene_list1, gene_list2):
+                gene_list1 = gene_list1.split(';')
+                gene_list2 = gene_list2.split(';')
+                overlapped_gene = []
+                for gene in gene_list1:
+                    if gene in gene_list2:
+                        overlapped_gene.append(gene)
+                percent_gene_list1 = round(len(overlapped_gene)/len(gene_list1),4)*100
+                percent_gene_list2 = round(len(overlapped_gene)/len(gene_list2),2)*100
+                return overlapped_gene, percent_gene_list1, percent_gene_list2
+
 
 
 img = Image.open("images/Logo.png")
