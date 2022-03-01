@@ -5,6 +5,7 @@ import gseapy as gp
 import matplotlib.pyplot as plt
 from PIL import Image
 
+
 def load_data(orphacode):
     data=df.loc[df['Orpha_code'] == orphacode]
     lowercase = lambda x: str(x).lower()
@@ -29,6 +30,8 @@ def plot_enrichr(enrichr, color, k=10):
     ax.tick_params(axis='both', labelsize=15)
     plt.xlabel('-log10(P-value)')
     st.pyplot(fig)
+    
+
 
 img = Image.open("images/Logo.png")
 
@@ -36,9 +39,25 @@ st.image(img)
 
 st.title('classification of rare diseases')
 
+st.markdown( ####found some way around sidebar width
+    """
+    <style>
+    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
+        width: 150px;
+    }
+    [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
+        width: 150px;
+        margin-left: -150px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 ##URL of orpha dataset
 #url="https://raw.githubusercontent.com/Awtum/Topic3_TeamA/Data/OrphaICD10.tsv"
 new_choice = ['Disease', 'Gene']
+
 choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
 
 if choice == 'Disease':
