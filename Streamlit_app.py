@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-backgroundColor = 'white'
-
 from PIL import Image
 img = Image.open("Logo2.png")
 
