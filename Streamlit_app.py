@@ -5,7 +5,7 @@ import numpy as np
 backgroundColor = 'white'
 
 from PIL import Image
-img = Image.open("Logo.png")
+img = Image.open("Logo2.png")
 
 st.image(img)
 
