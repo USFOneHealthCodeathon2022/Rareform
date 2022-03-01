@@ -8,7 +8,7 @@
 ## Solution
 We have developed the webapp "rareform" in order to navigate the relationship between different classification methods and find comparable diseases.
 
-[Access the rareform WebApp] (https://share.streamlit.io/awtum/topic3_teama/main/Streamlit_app.py)
+[Access the rareform WebApp](https://share.streamlit.io/awtum/topic3_teama/main/Streamlit_app.py)
 
 
 ## Future Directions
