@@ -26,7 +26,7 @@ st.write('You selected:', code)
 #    return data
 
 def load_data(orphacode):
-    data=pd.read_csv(url, nrows=nrows, sep='\t')
+    data=pd.read_csv(url, sep='\t')
     data.loc[data[1] == orphacode]
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
