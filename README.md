@@ -22,8 +22,7 @@ Orphanet does have a wide array of rare disease information, but this system's u
 
 Changes to the ICD-11 from ICD-10 include
 1. the foundation component- a knowledge base that can e regularly updated
-2. multi-hierarchical/parent system
-3. linearization
+2. multi-hierarchical/parent system and linearization- multiple ways to classify one disease
 
 Rare diseases often go by several different names, which makes finding them in classification systems difficult
 
