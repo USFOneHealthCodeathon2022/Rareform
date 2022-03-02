@@ -139,6 +139,8 @@ if choice == 'Disease':
         data = load_ICD(ICDcode)
         data
 
+    if code == "GB90.42"
+        #Hereditary Nonpolyposis Colorectal Cancer (HNPCC, Lynch syndrome)
 
 elif choice == 'Gene':
     with st.form(key='gene_list'):
