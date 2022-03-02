@@ -7,7 +7,9 @@
 ## Background
 
 ### Rare diseases are often neglected
-Rare diseases are defined as those with an incidence of less than 2,000 cases per year. Rare diseases are underrepresented in healthcare coding systems (Ayme et al., 2015).
+Rare diseases are defined as those with an incidence of less than 2,000 cases per year. 
+
+Rare diseases are underrepresented in healthcare coding systems (Ayme et al., 2015).
 
 ### Classification systems are of vital clinical importance
 Although they are rare, these diseases have significant clinical impacts and costs. Incorrectly classified diseases have consequential diagnostic implications. If a disease is classified incorrectly, a patient could undergo unnecessary or incorrect treatment.
@@ -46,3 +48,5 @@ We hope this design can be improved in the following ways:
 2. Incorporation of genetic information to improve medical coding and grouping 
 3. Clinical significance - diagnostics
 4. Clean up of existing classification systems and databases
+
+## References
