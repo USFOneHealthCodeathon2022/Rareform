@@ -8,12 +8,21 @@
 
 ### Rare diseases are often neglected
 Rare diseases are defined as those with an incidence of less than 2,000 cases per year
+Rare diseases are underrepresented in healthcare coding systems (Ayme et al., 2015)
+Although they are rare, these diseases have significant clinical impacts and costs
+Orphanet began in 1996 to help classify rare diseases
 
 ### Classification systems are of vital clinical importance
 
 ### Existing classification systems fall short for rare diseases
-ICD-10
-ICD-11 and Orphanet collaboration
+The International Classification of Disease (ICD) is used worldwide to classify diseases and causes of mortality and morbidity. The ICD-11 was adopted in May 2019 and began use in January 2022. Many systems are still relying on ICD-10, which has significant gaps when it comes to rare diseases.
+
+Orphanet does have a wide array of rare disease information, but this system's utility is decreased if it is not connected with other classification systems. Orphanet collaborated with the creation of ICD-11 to increase the amount of rare diseases included greater than 10-fold.
+
+Changes to the ICD-11 from ICD-10 include
+1. the foundation component- a knowledge base that can e regularly updated
+2. multi-hierarchical/parent system
+3. linearization
 
 Rare diseases often go by several different names, which makes finding them in classification systems difficult
 
