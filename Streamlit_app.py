@@ -87,23 +87,10 @@ choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
 
 ###Disease
 if choice == 'Disease':
-    df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t')
-    sub=pd.read_csv("Data/disease-gene.tsv", sep='\t')
+    df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t', index_col=False)
+    sub=pd.read_csv("Data/disease-gene.tsv", sep='\t', index_col=False)
     df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
     
-    list_of_codes = [None]+list(np.unique(df['ICD_10'].to_list()))  # added default None so the rest of the code won't run at start
-
-    #set ICD from selection box
-    ICDcode=st.selectbox("ICD", options=list_of_codes)
-
-    if ICDcode!=None:
-        st.write('You selected:', ICDcode)
-        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
-        st.write(desc.to_string(index=False))
-        data = load_ICD(ICDcode)
-        data
-    
-    st.write("OR")
     
     list_of_codes = [None]+list(np.unique(df['Orpha_code'].to_list()))  # added default None so the rest of the code won't run at start
 
@@ -112,8 +99,11 @@ if choice == 'Disease':
 
     if code!=None:
         st.write('You selected:', code)
-        desc=df.loc[df['Orpha_code'] == code]['Orphanet_disorder'] #find disorder description
+        desc=df.loc[df['Orpha_code'] == code]['Orphanet_disorder']#find disorder description
+        #desc=np.unique(desc) ###need to get syntax for reducing repetition. i.e. Hereditary pheochromocytoma-paraganglioma
         st.write(desc.to_string(index=False))
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_data(code)
         data
     
@@ -125,6 +115,23 @@ if choice == 'Disease':
         st.write('You selected:', disease)
         st.write(disease)
         data = load_disease(disease)
+        data
+    
+    st.write("OR")
+        
+    list_of_codes = [None]+list(np.unique(df['ICD_10'].to_list()))  # added default None so the rest of the code won't run at start
+
+    #set ICD from selection box
+    ICDcode=st.selectbox("ICD", options=list_of_codes)
+
+    if ICDcode!=None:
+        st.write('You selected:', ICDcode)
+        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
+        st.write(desc.to_string(index=False))
+        #code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
+        #genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        #st.write('genes:', genes.to_string(index=False))
+        data = load_ICD(ICDcode)
         data
 
 
@@ -152,8 +159,8 @@ elif choice == 'Gene':
         if enr_KEGG.results.empty and enr_AutoRIF.results.empty:
             st.write(f"No matching gene found in database for input '{gene_list}'!")
         else:
-            plot_enrichr(enr_KEGG, 'firebrick')
-            plot_enrichr(enr_AutoRIF, 'sienna')
+            plot_enrichr(enr_KEGG, 'navy')
+            plot_enrichr(enr_AutoRIF, '#8F3900')
 
         if gene_anno=='Minimal' or gene_anno=='Full':
             gene_list1 = enr_KEGG.results.iloc[0,-1]
@@ -176,8 +183,8 @@ elif choice == 'Gene':
                     labels = ['Interactions', 'pLI', 'GDI', 'LoFtool']
                     X_axis = np.arange(len(labels))
                     fig, ax = plt.subplots()
-                    plt.bar(X_axis-0.2, gene_annos_orpha.values.astype('float'), width=0.35, label='Orphanet genes', color='firebrick')
-                    plt.bar(X_axis+0.2, gene_annos.values.astype('float'), width=0.35, label='All genes', color='paleturquoise')
+                    plt.bar(X_axis-0.2, gene_annos_orpha.values.astype('float'), width=0.35, label='Orphanet genes', color='#069C74')
+                    plt.bar(X_axis+0.2, gene_annos.values.astype('float'), width=0.35, label='All genes', color='#3C30E3')
                     plt.xticks([0,1,2,3], labels = labels,rotation=0)
                     plt.ylabel('Rankscore percentiles')
                     plt.legend()
