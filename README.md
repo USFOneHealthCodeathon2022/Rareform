@@ -5,7 +5,10 @@
 
 
 ## Background
--
+
+### Classification systems are of vital clinical importance
+
+### Existing classification systems fall short for rare diseases
 
 ## Solution
 We have developed the webapp "rareform" in order to navigate the relationship between different classification methods and find comparable diseases.
