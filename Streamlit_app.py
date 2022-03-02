@@ -151,12 +151,18 @@ if choice == 'Disease':
     if code == 618:
     #Familial Melanoma (malignant melanoma)
         st.write('ICD-11: XH4846')
+        Fanconi_anemia = pd.DataFrame({'from':['Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia'], 'to':['Congenital aplastic anaemia','DNA instability syndromes affecting the skin','Inherited cancer-predisposing syndromes', 'Fanconi-ichthyosis-dysmorphism syndrome','Fanconi hypoplastic anaemia','Fanconi familial refractory anaemia']})
+        G=nx.from_pandas_edgelist(Fanconi_anemia, 'from', 'to')
+        nx.draw(G, with_labels=True)
+        st.pyplot(plt)
     
     if code == 97286:
-    #Familial Melanoma (malignant melanoma)
+    #Carney
         st.write('ICD-11: 5A70.Y')
-        
-
+        Malignant_Melanoma = pd.DataFrame({'from':['Carney Stratakis syndrome','Multiple polyglandular tumours','Neoplasms of uncertain behaviour withpluriglandular involvement'],'to':['Multiple polyglandular tumours','Neoplasms of uncertain behaviour withpluriglandular involvement','Neoplasms of uncertain behaviour of endocrineglands']})
+        G=nx.from_pandas_edgelist(Malignant_Melanoma, 'from', 'to')
+        nx.draw(G, with_labels=True)
+        st.pyplot(plt)
 
 elif choice == 'Gene':
     # st.markdown("<h2 style='text-align: left; color: black;'>Enter gene symbol(s), separated by ',':</h1>", unsafe_allow_html=True)
