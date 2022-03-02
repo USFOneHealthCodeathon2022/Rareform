@@ -89,10 +89,9 @@ choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
 
 ###Disease
 if choice == 'Disease':
-    #df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t', index_col=False)
-    #sub=pd.read_csv("Data/disease-gene.tsv", sep='\t', index_col=False)
-    #df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
-    
+    df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t', index_col=False)
+    sub=pd.read_csv("Data/disease-gene.tsv", sep='\t', index_col=False)
+    df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
     
     list_of_codes = [None]+list(np.unique(df['Orpha_code'].to_list()))  # added default None so the rest of the code won't run at start
 
@@ -116,6 +115,10 @@ if choice == 'Disease':
     if disease!=None:
         st.write('You selected:', disease)
         st.write(disease)
+        code=df.loc[df['Orphanet_disorder'] == disease]['Orpha_code']
+        code=int(code.values)
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_disease(disease)
         data
     
@@ -130,18 +133,28 @@ if choice == 'Disease':
         st.write('You selected:', ICDcode)
         desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
         st.write(desc.to_string(index=False))
-        #code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
-        #genes=sub.loc[sub['OrphaCode'] == code]['Genes']
-        #st.write('genes:', genes.to_string(index=False))
+        code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
+        code=int(code.values)
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_ICD(ICDcode)
         data
 
-    if code == "GB90.42":
+    if code == 144:
         #Hereditary Nonpolyposis Colorectal Cancer (HNPCC, Lynch syndrome)
+        st.write('ICD-11: GB90.42')
         HPNCC = pd.DataFrame({'from':['HPNCC','HPNCC'], 'to':['Hereditary nonpolyposis colorectal cancer',' Familial nonpolyposis colorectal cancer']})
         G=nx.from_pandas_edgelist(HPNCC, 'from', 'to')
         nx.draw(G, with_labels=True)
         st.pyplot(plt)
+        
+    if code == 618:
+    #Familial Melanoma (malignant melanoma)
+        st.write('ICD-11: XH4846')
+    
+    if code == 97286:
+    #Familial Melanoma (malignant melanoma)
+        st.write('ICD-11: 5A70.Y')
         
 
 
