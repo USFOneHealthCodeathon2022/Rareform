@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import gseapy as gp
 import matplotlib.pyplot as plt
+import networkx as nx
 from PIL import Image
 
 
@@ -92,7 +93,6 @@ if choice == 'Disease':
     sub=pd.read_csv("Data/disease-gene.tsv", sep='\t', index_col=False)
     df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
     
-    
     list_of_codes = [None]+list(np.unique(df['Orpha_code'].to_list()))  # added default None so the rest of the code won't run at start
 
     #set ophacode from selection box, should probably find a way to allow description searching
@@ -115,6 +115,10 @@ if choice == 'Disease':
     if disease!=None:
         st.write('You selected:', disease)
         st.write(disease)
+        code=df.loc[df['Orphanet_disorder'] == disease]['Orpha_code']
+        code=int(code.values)
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_disease(disease)
         data
     
@@ -129,13 +133,36 @@ if choice == 'Disease':
         st.write('You selected:', ICDcode)
         desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
         st.write(desc.to_string(index=False))
-        #code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
-        #genes=sub.loc[sub['OrphaCode'] == code]['Genes']
-        #st.write('genes:', genes.to_string(index=False))
+        code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
+        code=int(code.values)
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_ICD(ICDcode)
         data
 
-
+    if code == 144:
+        #Hereditary Nonpolyposis Colorectal Cancer (HNPCC, Lynch syndrome)
+        st.write('ICD-11: GB90.42')
+        HPNCC = pd.DataFrame({'from':['HPNCC','HPNCC'], 'to':['Hereditary nonpolyposis colorectal cancer',' Familial nonpolyposis colorectal cancer']})
+        G=nx.from_pandas_edgelist(HPNCC, 'from', 'to')
+        nx.draw(G, with_labels=True)
+        st.pyplot(plt)
+        
+    if code == 618:
+    #Familial Melanoma (malignant melanoma)
+        st.write('ICD-11: XH4846')
+        Fanconi_anemia = pd.DataFrame({'from':['Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia'], 'to':['Congenital aplastic anaemia','DNA instability syndromes affecting the skin','Inherited cancer-predisposing syndromes', 'Fanconi-ichthyosis-dysmorphism syndrome','Fanconi hypoplastic anaemia','Fanconi familial refractory anaemia']})
+        G=nx.from_pandas_edgelist(Fanconi_anemia, 'from', 'to')
+        nx.draw(G, with_labels=True)
+        st.pyplot(plt)
+    
+    if code == 97286:
+    #Carney
+        st.write('ICD-11: 5A70.Y')
+        Malignant_Melanoma = pd.DataFrame({'from':['Carney Stratakis syndrome','Multiple polyglandular tumours','Neoplasms of uncertain behaviour withpluriglandular involvement'],'to':['Multiple polyglandular tumours','Neoplasms of uncertain behaviour withpluriglandular involvement','Neoplasms of uncertain behaviour of endocrineglands']})
+        G=nx.from_pandas_edgelist(Malignant_Melanoma, 'from', 'to')
+        nx.draw(G, with_labels=True)
+        st.pyplot(plt)
 
 elif choice == 'Gene':
     # st.markdown("<h2 style='text-align: left; color: black;'>Enter gene symbol(s), separated by ',':</h1>", unsafe_allow_html=True)
