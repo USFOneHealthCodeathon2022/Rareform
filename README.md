@@ -15,7 +15,7 @@ Rare diseases and hereditary cancer syndromes have significant clinical impacts 
 ### Existing classification systems fall short for rare diseases
 The International Classification of Diseases (ICD) is used worldwide to classify diseases and causes of mortality and morbidity (Fung et al., 2020). The ICD-11 was adopted in May 2019 and was available for use in January 2022 (Fung et al., 2020). However, many systems are still relying on ICD-10, which was adopted in 1992 and has significant gaps when it comes to rare diseases and hereditary cancer syndromes, most of which were not even identified until after the ICD-10 system was developed (Ayme et al., 2015; Fung et al., 2020).
  
-Orphanet began in 1996 to help classify rare diseases (Ayme et al., 2015), and while it does have a wide array of rare disease information, this system's utility is decreased if it is not connected with other classification systems. In the creation of ICD-11 an expert rare disease group worked to increase the number of rare diseases included by a factor of over 10-fold (Ayme et al., 2015).
+Orphanet began in 1996 to help classify rare diseases (Ayme et al., 2015), and while it does have a wide array of rare disease information, this system's utility is decreased if it is not connected with other classification systems. In the creation of ICD-11, an expert rare disease group worked to increase the number of rare diseases included by a factor of over 10-fold (Ayme et al., 2015).
  
 Other than adding a substantial number of codes to represent more rare diseases and hereditary cancer syndromes, other changes to the ICD-11 from ICD-10 include:
 1. the foundation component is all electronic with a knowledge base that can be regularly updated  (Fung et al., 2020)
