@@ -13,6 +13,7 @@ Although they are rare, these diseases have significant clinical impacts and cos
 Orphanet began in 1996 to help classify rare diseases
 
 ### Classification systems are of vital clinical importance
+Incorrectly classified diseases have significant diagnostic implications. If a disease is classified incorrectly, a patient could undergo unnecessary or incorrect treatment.
 
 ### Existing classification systems fall short for rare diseases
 The International Classification of Disease (ICD) is used worldwide to classify diseases and causes of mortality and morbidity. The ICD-11 was adopted in May 2019 and began use in January 2022. Many systems are still relying on ICD-10, which has significant gaps when it comes to rare diseases.
