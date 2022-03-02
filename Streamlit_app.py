@@ -114,6 +114,10 @@ if choice == 'Disease':
     if disease!=None:
         st.write('You selected:', disease)
         st.write(disease)
+        code=df.loc[df['Orphanet_disorder'] == disease]['Orpha_code']
+        code=int(code.values)
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_disease(disease)
         data
     
@@ -126,11 +130,12 @@ if choice == 'Disease':
 
     if ICDcode!=None:
         st.write('You selected:', ICDcode)
-        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
+        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder']#find disorder description
         st.write(desc.to_string(index=False))
-        #code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
-        #genes=sub.loc[sub['OrphaCode'] == code]['Genes']
-        #st.write('genes:', genes.to_string(index=False))
+        code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
+        code=int(code.values)
+        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        st.write('genes:', genes.to_string(index=False))
         data = load_ICD(ICDcode)
         data
 
