@@ -12,11 +12,18 @@ def load_data(orphacode):
     data.rename(lowercase, axis='columns', inplace=True)
     return data
     
+def load_ICD(ICDcode):
+    data=df.loc[df['ICD_10'] == ICDcode]
+    lowercase = lambda x: str(x).lower()
+    data.rename(lowercase, axis='columns', inplace=True)
+    return data
+    
 def load_disease(dis):
     data=df.loc[df['Orphanet_disorder'] == disease]
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis='columns', inplace=True)
     return data
+    
 
 def input_list(gene_list):
     if isinstance(gene_list, list):
@@ -76,10 +83,28 @@ new_choice = ['Disease', 'Gene']
 
 choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
 
+
+
 ###Disease
 if choice == 'Disease':
-
     df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t')
+    sub=pd.read_csv("Data/disease-gene.tsv", sep='\t')
+    df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
+    
+    list_of_codes = [None]+list(np.unique(df['ICD_10'].to_list()))  # added default None so the rest of the code won't run at start
+
+    #set ICD from selection box
+    ICDcode=st.selectbox("ICD", options=list_of_codes)
+
+    if ICDcode!=None:
+        st.write('You selected:', ICDcode)
+        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
+        st.write(desc.to_string(index=False))
+        data = load_ICD(ICDcode)
+        data
+    
+    st.write("OR")
+    
     list_of_codes = [None]+list(np.unique(df['Orpha_code'].to_list()))  # added default None so the rest of the code won't run at start
 
     #set ophacode from selection box, should probably find a way to allow description searching
@@ -89,14 +114,8 @@ if choice == 'Disease':
         st.write('You selected:', code)
         desc=df.loc[df['Orpha_code'] == code]['Orphanet_disorder'] #find disorder description
         st.write(desc.to_string(index=False))
-        #col1, col2, col3 = st.columns(3)
-        #col1.metric("Description", "1.2 °F")
-        #col2.metric("ICD-10", "-8%")
-        #col3.metric("Orpha", "4%")
-        data_load_state = st.text('Loading data...')
         data = load_data(code)
         data
-        data_load_state  = st.text('Complete!')
     
     st.write("OR")
     
@@ -105,12 +124,9 @@ if choice == 'Disease':
     if disease!=None:
         st.write('You selected:', disease)
         st.write(disease)
-        data_load_state = st.text('Loading data...')
         data = load_disease(disease)
         data
-        data_load_state  = st.text('Complete!')
-    
-    
+
 
 elif choice == 'Gene':
     with st.form(key='gene_list'):
