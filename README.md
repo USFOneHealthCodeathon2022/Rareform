@@ -6,6 +6,8 @@
 
 ## Background
 
+### Rare diseases are often neglected
+
 ### Classification systems are of vital clinical importance
 
 ### Existing classification systems fall short for rare diseases
