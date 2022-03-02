@@ -11,14 +11,14 @@
 We have developed the webapp "rareform" in order to navigate the relationship between different classification methods and find comparable diseases.
 
 
-###The reform webapp
+### The reform webapp
 [Access the rareform WebApp](https://share.streamlit.io/awtum/topic3_teama/main/Streamlit_app.py)
 
-####Viewing disease attributes in reform
+#### Viewing disease attributes in reform
 You can pull diseases up by Disease name, Orpha code or ICD10 code
 ![App Disease View](images/App2.png)
 
-####Characterizing genes in reform
+#### Characterizing genes in reform
 You can search genes or gene lists within reform
 ![App Gene View](images/App1.png)
 
