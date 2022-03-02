@@ -48,3 +48,6 @@ We hope this design can be improved in the following ways:
 4. Clean up of existing classification systems and databases
 
 ## References
+Ayme, S., Bellet, B., & Rath, A. (2015). Rare diseases in ICD11: Making rare diseases visible in health information systems through appropriate coding. *Orphanet Journal of Rare Diseases, 10*, 35. https://doi.org/10.1186/s13023-015-0251-8
+
+Fung, K. W., Xu, J., & Bodenreider, O. (2020). The new International Classification of Diseases 11th edition: a comparative analysis with ICD-10 and ICD-10-CM. *Journal of the American Medical Informatics Association, 27*(5), 738-746. https://dx.doi.org/10.1093%2Fjamia%2Focaa030
