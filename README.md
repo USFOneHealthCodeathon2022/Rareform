@@ -17,10 +17,10 @@ The International Classification of Diseases (ICD) is used worldwide to classify
 
 Orphanet began in 1996 to help classify rare diseases (Ayme et al., 2015), and while it does have a wide array of rare disease information, this system's utility is decreased if it is not connected with other classification systems. Orphanet collaborated with the creation of ICD-11 to increase the amount of rare diseases included greater than 10-fold (Ayme et al., 2015).
 
-Changes to the ICD-11 from ICD-10 include
+Changes to the ICD-11 from ICD-10 include (Fung et al., 2020):
 1. the foundation component- a knowledge base that can e regularly updated
 2. multi-hierarchical/parent system and linearization- multiple ways to classify one disease
-3. digital updating (Fung et al., 2020)
+3. digital updating 
 
 Rare diseases often go by several different names, which makes finding them in classification systems difficult. When a disease is incorrectly classified or linked to an incorrect gene, these issues can be perpetuated as different systems are linked together and draw from each other. As our understanding of rare diseases changes, classifications need to be updated.
 
@@ -48,3 +48,6 @@ We hope this design can be improved in the following ways:
 4. Clean up of existing classification systems and databases
 
 ## References
+Ayme, S., Bellet, B., & Rath, A. (2015). Rare diseases in ICD11: Making rare diseases visible in health information systems through appropriate coding. *Orphanet Journal of Rare Diseases, 10*, 35. https://doi.org/10.1186/s13023-015-0251-8
+
+Fung, K. W., Xu, J., & Bodenreider, O. (2020). The new International Classification of Diseases 11th edition: a comparative analysis with ICD-10 and ICD-10-CM. *Journal of the American Medical Informatics Association, 27*(5), 738-746. https://dx.doi.org/10.1093%2Fjamia%2Focaa030
