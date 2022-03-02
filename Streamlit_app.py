@@ -187,4 +187,3 @@ elif choice == 'Gene':
                 new_idx = gene_db_orpha['Gene_name'].isin(cand_gene_list)
                 gene_db_orpha[new_idx].iloc[:,1:]
 
-
