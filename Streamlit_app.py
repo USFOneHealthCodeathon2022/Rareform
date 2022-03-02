@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import gseapy as gp
 import matplotlib.pyplot as plt
+import networkx as nx
 from PIL import Image
 
 
@@ -87,9 +88,9 @@ choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
 
 ###Disease
 if choice == 'Disease':
-    df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t', index_col=False)
-    sub=pd.read_csv("Data/disease-gene.tsv", sep='\t', index_col=False)
-    df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
+    #df=pd.read_csv("Data/OrphaICD10.tsv", sep='\t', index_col=False)
+    #sub=pd.read_csv("Data/disease-gene.tsv", sep='\t', index_col=False)
+    #df=df.loc[df['Orpha_code'].isin(list(np.unique(sub['OrphaCode'].to_list())))]
     
     
     list_of_codes = [None]+list(np.unique(df['Orpha_code'].to_list()))  # added default None so the rest of the code won't run at start
@@ -139,8 +140,13 @@ if choice == 'Disease':
         data = load_ICD(ICDcode)
         data
 
-    if code == "GB90.42"
+    if code == "GB90.42":
         #Hereditary Nonpolyposis Colorectal Cancer (HNPCC, Lynch syndrome)
+        HPNCC = pd.DataFrame({'from':['HPNCC','HPNCC'], 'to':['Hereditary nonpolyposis colorectal cancer',' Familial nonpolyposis colorectal cancer']})
+        G=nx.from_pandas_edgelist(HPNCC, 'from', 'to')
+        nx.draw(G, with_labels=True)
+        st.pyplot(plt)
+        
 
 elif choice == 'Gene':
     with st.form(key='gene_list'):
