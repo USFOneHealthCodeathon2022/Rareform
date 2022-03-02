@@ -61,7 +61,9 @@ img = Image.open("images/Logo.png")
 
 st.image(img)
 
-st.title('classification of rare diseases')
+
+# st.title('classification of rare diseases')
+st.markdown("<h1 style='text-align: Center; color: firebrick;'>classification of rare diseases</h1>", unsafe_allow_html=True)
 
 st.markdown( ####found some way around sidebar width
     """
@@ -82,7 +84,6 @@ st.markdown( ####found some way around sidebar width
 new_choice = ['Disease', 'Gene']
 
 choice = st.sidebar.radio('Types of analysis:',('Disease', 'Gene'))
-
 
 
 ###Disease
@@ -114,10 +115,6 @@ if choice == 'Disease':
     if disease!=None:
         st.write('You selected:', disease)
         st.write(disease)
-        code=df.loc[df['Orphanet_disorder'] == disease]['Orpha_code']
-        code=int(code.values)
-        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
-        st.write('genes:', genes.to_string(index=False))
         data = load_disease(disease)
         data
     
@@ -130,20 +127,31 @@ if choice == 'Disease':
 
     if ICDcode!=None:
         st.write('You selected:', ICDcode)
-        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder']#find disorder description
+        desc=df.loc[df['ICD_10'] == ICDcode]['Orphanet_disorder'] #find disorder description
         st.write(desc.to_string(index=False))
-        code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
-        code=int(code.values)
-        genes=sub.loc[sub['OrphaCode'] == code]['Genes']
-        st.write('genes:', genes.to_string(index=False))
+        #code=df.loc[df['ICD_10'] == ICDcode]['Orpha_code']
+        #genes=sub.loc[sub['OrphaCode'] == code]['Genes']
+        #st.write('genes:', genes.to_string(index=False))
         data = load_ICD(ICDcode)
         data
 
 
+
 elif choice == 'Gene':
+    # st.markdown("<h2 style='text-align: left; color: black;'>Enter gene symbol(s), separated by ',':</h1>", unsafe_allow_html=True)
+
     with st.form(key='gene_list'):
-        gene_list = st.text_input(label="Enter gene(s), separated by ',' :")
-        gene_anno=st.selectbox("Include gene annotation:", options=["No", "Minimal", "Full"])
+        # gene_list = st.text_input(label='Gene input:',help="Enter gene symbol(s), separated by ',' :")
+        st.markdown("<h2 style='text-align: left; color: black;'>Gene input:</h1>", unsafe_allow_html=True)
+
+        gene_list = st.text_input(label='',help="Enter gene symbol(s), separated by ',' :")
+
+        st.header('')
+
+        st.markdown("<h2 style='text-align: left; color: black;'>Include gene annotation:</h1>", unsafe_allow_html=True)
+        gene_anno=st.selectbox("", options=["No", "Minimal", "Full"],help='No: only display KEGG and AutoRIF enrichment analyses. \
+                                                                                                   Minimal: display additional gene annotations.\n\
+                                                                                                   Full: display annotations for prioritized genes that are responsible for the top disease-pathway pair.')
         submit_button = st.form_submit_button(label='Submit')
 
     if len(gene_list)!=0:
@@ -164,7 +172,9 @@ elif choice == 'Gene':
         if enr_KEGG.results.empty and enr_AutoRIF.results.empty:
             st.write(f"No matching gene found in database for input '{gene_list}'!")
         else:
+            st.markdown("<h2 style='text-align: left; color: black;'>Top KEGG pathways overrepresented by the gene set:</h1>", unsafe_allow_html=True)
             plot_enrichr(enr_KEGG, 'navy')
+            st.markdown("<h2 style='text-align: left; color: black;'>Top diseases overrepresented by the gene set:</h1>", unsafe_allow_html=True)
             plot_enrichr(enr_AutoRIF, '#8F3900')
 
         if gene_anno=='Minimal' or gene_anno=='Full':
@@ -174,8 +184,9 @@ elif choice == 'Gene':
             gene_db_orpha = pd.read_csv('Data/dbNSFP4.3a.Selected.Orpha.csv')
 
             cand_gene_list = gene_overlap(gene_list1, gene_list2)[0]
-
+            # cand_gene_list = gene_list
             orpha_list = []
+            st.markdown("<h2 style='text-align: left; color: black;'>OrphaNet gene functional importance</h1>", unsafe_allow_html=True)
             for count, gene in enumerate(cand_gene_list):
                 count += 1
                 idx1 = gene_db['Gene_name'] == gene
@@ -194,8 +205,14 @@ elif choice == 'Gene':
                     plt.ylabel('Rankscore percentiles')
                     plt.legend()
                     st.pyplot(plt)
-
+            st.markdown("<h3 style='text-align: left; color: black;'>Notes:</h1>", unsafe_allow_html=True)
+            st.write("Interactions: The number of other genes this gene interacting with(from ConsensusPathDB).")
+            st.write("pLI: the probability of being loss-of-function intolerant (intolerant of both heterozygous and homozygous lof variants) based on gnomAD 2.1 data.")
+            st.write("GDI: gene damage index score, a genome-wide, gene-level metric of the mutational damage that has accumulated in the general population from doi: 10.1073/pnas.1518646112. The higher the score the more likely the gene is to be responsible for monogenic diseases.")
+            st.write("LoFtool_score: a percentile score for gene intolerance to functional change. The higher the score the higher gene intolerance to functional change. For details see doi: 10.1093/bioinformatics/btv602.")
+                
             if gene_anno=='Full':
+                st.markdown("<h2 style='text-align: left; color: black;'>Gene annotation table</h1>", unsafe_allow_html=True)
                 new_idx = gene_db_orpha['Gene_name'].isin(cand_gene_list)
-                gene_db_orpha[new_idx].iloc[:,1:]
+                st.table(gene_db_orpha[new_idx].iloc[:,2:].reset_index())
 
