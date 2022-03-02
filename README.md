@@ -7,7 +7,7 @@
 ## Background
 
 ### Rare diseases are often neglected
-Rare diseases are generally defined as those with a prevalence of less than 1 in 2,000 (Ayme et al., 2015). Because of this, rare diseases are underrepresented in clinical coding systems, which leads to a lack of research and understanding of their importance and etiology (Ayme et al., 2015).
+Rare diseases are generally defined as those with a prevalence of less than 1 in 2,000 (Ayme et al., 2015). Because of this, rare diseases are underrepresented in clinical coding systems (Ayme et al., 2015). Hereditary cancer syndromes that result from monogenic inheritance, although not rare, are neglected and have also not been adequately represented in clinical coding systems. This lack of codes leads to a lack of research and understanding of their importance, true prevalence, and etiology (Ayme et al., 2015).
 
 ### Classification systems are of vital clinical importance
 Although they are rare, these diseases have significant clinical impacts and costs (Ayme et al., 2015). Incorrectly classified diseases have consequential diagnostic implications. If a disease is classified incorrectly, a patient could undergo unnecessary or incorrect treatment.
