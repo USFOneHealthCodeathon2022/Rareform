@@ -7,7 +7,7 @@
 ## Background
 
 ### Rare diseases are often neglected
-Rare diseases are generally defined as those with a prevalence of less than 1 in 2,000 (Ayme et al., 2015). Because of this, rare diseases are underrepresented in clinical coding systems (Ayme et al., 2015). Hereditary cancer syndromes that result from monogenic inheritance, although not rare, are neglected and have also not been adequately represented in clinical coding systems. This lack of codes leads to a lack of research and understanding of their importance, true prevalence, and etiology (Ayme et al., 2015).
+Rare diseases and hereditary cancer syndromes have significant clinical impacts and costs (Ayme et al., 2015). When diseases are incorrectly classified or have no codes to denote them in clinical billing, this leads to the potential for incorrect classification and can even have diagnostic and treatment consequences. For example, one patient who participated in a study conducted by one of our team members had her ovaries removed because she had a pathogenic variant in a gene that was categorized with other hereditary breast and ovarian cancer genes even though this particular gene does not confer increased risks for ovarian cancer. This highlights the critical importance of accurate disease classification systems and the need for codes that can differentiate hereditary cancer predisposition syndromes and sporadic cancers.
 
 ### Classification systems are of vital clinical importance
 Although they are rare, these diseases have significant clinical impacts and costs (Ayme et al., 2015). Incorrectly classified diseases have consequential diagnostic implications. If a disease is classified incorrectly, a patient could undergo unnecessary or incorrect treatment.
