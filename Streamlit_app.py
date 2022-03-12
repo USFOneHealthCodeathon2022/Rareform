@@ -145,7 +145,11 @@ if choice == 'Disease':
         st.write('ICD-11: GB90.42')
         HPNCC = pd.DataFrame({'from':['HPNCC','HPNCC'], 'to':['Hereditary nonpolyposis colorectal cancer',' Familial nonpolyposis colorectal cancer']})
         G=nx.from_pandas_edgelist(HPNCC, 'from', 'to')
-        nx.draw(G, with_labels=True)
+        nx.draw(G, pos=nx.spring_layout(G), with_labels=True, node_size=500, node_color="navy", alpha=0.8)
+        plt.axis('off')
+        axis = plt.gca()
+        axis.set_xlim([2*x for x in axis.get_xlim()])
+        axis.set_ylim([2*y for y in axis.get_ylim()])
         st.pyplot(plt)
         
     if code == 618:
@@ -153,7 +157,11 @@ if choice == 'Disease':
         st.write('ICD-11: XH4846')
         Fanconi_anemia = pd.DataFrame({'from':['Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia','Fanconi anemia'], 'to':['Congenital aplastic anaemia','DNA instability syndromes affecting the skin','Inherited cancer-predisposing syndromes', 'Fanconi-ichthyosis-dysmorphism syndrome','Fanconi hypoplastic anaemia','Fanconi familial refractory anaemia']})
         G=nx.from_pandas_edgelist(Fanconi_anemia, 'from', 'to')
-        nx.draw(G, with_labels=True)
+        nx.draw(G, pos=nx.spring_layout(G), with_labels=True, node_size=500, node_color="navy", alpha=0.8)
+        plt.axis('off')
+        axis = plt.gca()
+        axis.set_xlim([2*x for x in axis.get_xlim()])
+        axis.set_ylim([2*y for y in axis.get_ylim()])
         st.pyplot(plt)
     
     if code == 97286:
@@ -161,7 +169,11 @@ if choice == 'Disease':
         st.write('ICD-11: 5A70.Y')
         Malignant_Melanoma = pd.DataFrame({'from':['Carney Stratakis syndrome','Multiple polyglandular tumours','Neoplasms of uncertain behaviour withpluriglandular involvement'],'to':['Multiple polyglandular tumours','Neoplasms of uncertain behaviour withpluriglandular involvement','Neoplasms of uncertain behaviour of endocrineglands']})
         G=nx.from_pandas_edgelist(Malignant_Melanoma, 'from', 'to')
-        nx.draw(G, with_labels=True)
+        nx.draw(G, pos=nx.spring_layout(G), with_labels=True, node_size=500, node_color="navy", alpha=0.8)
+        plt.axis('off')
+        axis = plt.gca()
+        axis.set_xlim([2*x for x in axis.get_xlim()])
+        axis.set_ylim([2*y for y in axis.get_ylim()])
         st.pyplot(plt)
 
 elif choice == 'Gene':
