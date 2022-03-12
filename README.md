@@ -28,7 +28,7 @@ We have developed the webapp "rareform" in order to navigate the relationship be
 
 
 ### The reform webapp
-[Access the rareform WebApp](https://share.streamlit.io/awtum/topic3_teama/main/Streamlit_app.py)
+[Access the rareform WebApp](https://share.streamlit.io/awtum/rareform/main/Streamlit_app.py)
 
 #### Viewing disease attributes in reform
 You can pull diseases up by Disease name, Orpha code or ICD10 code
